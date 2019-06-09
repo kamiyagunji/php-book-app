@@ -20,6 +20,7 @@
 - ログインするにはユーザー登録が必要
 - ログイン後はログアウトすることができる
 
+
 ### 必要ではない要件
 - 質問・回答共に画像や動画は投稿できない
   - テキストのみ投稿できる
@@ -30,10 +31,11 @@
 - ユーザー退会及びパスワード再発行機能は今回は実装しない
   - 当面は問い合わせベースで対応する
 
+
 ### 画面一覧
 
 | 画面名 | 機能 | 補足 |
-|:-----------:|:------------|:------------|
+|:-----------|:------------|:------------|
 | 質問一覧画面 | 質問が一覧で表示される<br/>質問を削除できる | 質問は最大1ページ最大20件表示<br/>画面下部からページ遷移できる<br/>質問投稿画面へのリンクが上部にある |
 | 質問詳細画面 | 質問とその回答が一覧で表示される<br/>回答を投稿できる<br/>質問を削除できる | 回答投稿後は元の詳細画面に遷移する |
 | 質問投稿画面 | 質問を投稿できる | 質問投稿後は質問一覧画面に遷移する |
@@ -41,6 +43,7 @@
 | ログイン画面 | ログインできる(ID/パスワード) | ログイン後は質問一覧画面に遷移する |
 | ユーザー編集画面 | ユーザー情報を編集できる | パスワード更新画面へのリンクが上部にある |
 | パスワード更新画面 | パスワードを更新できる | 変更後はユーザー編集画面に遷移する |
+
 
 ### 細かい要件
 - 質問一覧は投稿が新しいものから順に表示する
@@ -53,3 +56,19 @@
 - ヘッダーのリンクをログイン前後で変える
   - ログイン前：ユーザー登録がめんとログイン画面のリンク
   - ログイン後：ユーザー編集画面とログアウトのリンク
+
+
+### URL一覧
+| 画面/処理名 | URL | 対応するコントローラーのアクション |
+|:-----------|:------------|:------------|
+| 質問一覧画面 | GET /questions | QuestionsControlelr::index() |
+| 質問詳細画面 | GET /questions/:id | QuestionsController::view(:id) |
+| 質問投稿画面 | GET・POST /questions/add | QuestionsController::add() |
+| 質問削除処理 | POST /questions/delete/:id | QuesitonsController::delete(:id) |
+| 回答投稿処理 | POST /answers/add | AnswersController::add() |
+| 回答削除処理 | POST /answers/delete/:id | AnswersController:delete(:id) |
+| ユーザー投稿画面 | POST /users/add | UsersController::add() |
+| ユーザー編集画面 | GET・PUT /users/edit | UsersController::edit() |
+| パスワード更新画面 | GET・POST /users/password | UsersController:password() |
+| ログイン画面 | GET・POST /login | LoginController::index() |
+| ログアウト処理 | GET /logout | LogoutController::logout() |
